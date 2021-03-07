@@ -39,7 +39,7 @@ h1 {
   padding-top: 20px;
 }
 
-#balance-form {
+#storage-form {
   display: flex;
   justify-content: space-between;
 }
@@ -53,7 +53,7 @@ h1 {
   border-radius: 3px;
 }
 
-#show-balance-button {
+#show-storage-button {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -66,12 +66,12 @@ h1 {
   transition: background 0.3s, color 0.3s;
 }
 
-#show-balance-button:hover {
+#show-storage-button:hover {
   background: #35636e;
   color: white;
 }
 
-#balance-output {
+#storage-output {
   justify-content: center;
   align-items: center;
   height: 50px;

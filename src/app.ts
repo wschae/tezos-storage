@@ -5,33 +5,32 @@ export class App {
   private tk: TezosToolkit;
 
   constructor() {
-    this.tk = new TezosToolkit("https://api.tez.ie/rpc/mainnet");
+    this.tk = new TezosToolkit("http://localhost:8732");
   }
 
   public initUI() {
-    $("#show-balance-button").bind("click", () =>
-      this.getBalance($("#address-input").val())
+    $("#show-storage-button").bind("click", () =>
+      this.getStorage($("#address-input").val());
     );
   }
 
   private showError(message: string) {
-    $("#balance-output").removeClass().addClass("hide");
+    $("#storage-output").removeClass().addClass("hide");
     $("#error-message")
       .removeClass()
       .addClass("show")
       .html("Error: " + message);
   }
 
-  private showBalance(balance: number) {
+  private showStorage(balance: number) {
     $("#error-message").removeClass().addClass("hide");
-    $("#balance-output").removeClass().addClass("show");
-    $("#balance").html(balance);
+    $("#storage-output").removeClass().addClass("show");
+    $("#storage").html(balance);
   }
 
-  private getBalance(address: string) {
-    this.tk.rpc
-      .getBalance(address)
-      .then(balance => this.showBalance(balance.toNumber() / 1000000))
-      .catch(e => this.showError("Address not found"));
+  private getStorage(address: string) {
+    this.tk.contract.at(address)
+    .then(contract => contract.storage())
+    .then(value => this.showStorage(value.toNumber()));
   }
 }
